@@ -153,6 +153,71 @@ int mid, int day, char *eventName)
         that1.eventName[that1.eventIndex] = eventName;
         that1.eventIndex++;
     }
+    if (mid == 2) 
+    {
+        that2.eventDay = day;
+        that2.eventName[that2.eventIndex] = eventName;
+        that2.eventIndex++;    
+    }
+    if (mid == 3) 
+    {
+        that3.eventDay = day;
+        that3.eventName[that3.eventIndex] = eventName;
+        that3.eventIndex++;    }
+    if (mid == 4) 
+    {
+        that4.eventDay = day;
+        that4.eventName[that4.eventIndex] = eventName;
+        that4.eventIndex++;    
+    }
+    if (mid == 5) 
+    {
+        that5.eventDay = day;
+        that5.eventName[that5.eventIndex] = eventName;
+        that5.eventIndex++;
+    }
+    if (mid == 6) 
+    {
+        that6.eventDay = day;
+        that6.eventName[that6.eventIndex] = eventName;
+        that6.eventIndex++;
+    }
+    if (mid == 7) 
+    {
+        that7.eventDay = day;
+        that7.eventName[that7.eventIndex] = eventName;
+        that7.eventIndex++;
+    }
+    if (mid == 8) 
+    {
+        that8.eventDay = day;
+        that8.eventName[that8.eventIndex] = eventName;
+        that8.eventIndex++;
+    }
+    if (mid == 9) 
+    {
+        that9.eventDay = day;
+        that9.eventName[that9.eventIndex] = eventName;
+        that9.eventIndex++;
+    }
+    if (mid == 10) 
+    {
+        that10.eventDay = day;
+        that10.eventName[that10.eventIndex] = eventName;
+        that10.eventIndex++;
+    }
+    if (mid == 11) 
+    {
+        that11.eventDay = day;
+        that11.eventName[that11.eventIndex] = eventName;
+        that11.eventIndex++;
+    }
+    if (mid == 12) 
+    {
+        that12.eventDay = day;
+        that12.eventName[that12.eventIndex] = eventName;
+        that12.eventIndex++;
+    }
 }
 void checkMD(struct month that1,struct month that2,struct month that3,struct month that4
 ,struct month that5,struct month that6,struct month that7,struct month that8,
