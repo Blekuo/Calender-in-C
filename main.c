@@ -21,6 +21,7 @@ struct year
 
 void newline()
 {
+    memcpy(stdin, NULL, 0);
     printf("\n");
 }
 void clearit()
@@ -276,41 +277,34 @@ int mid, int day)
 }
 void usrIn(char *userInput, short size)
 {
-    char *dest = userInput;
-    scanf("%10s", dest);
-    dest = NULL;
+    printf("\e[0;34m<-=\e[1;33m(o)\e[0;34m=->\e[0m ");
+    memcpy(stdin, NULL, 0);
+    fgets(userInput, size, stdin);
+    userInput[(strlen(userInput)-1)] = '\0';
+    printf("checking... %s", userInput);
+    newline();
 }
-void CalenderSystem9(struct month m_1,struct month m_2,struct month m_3,struct month m_4
+int CalenderSystem9(struct month m_1,struct month m_2,struct month m_3,struct month m_4
 ,struct month m_5,struct month m_6,struct month m_7,struct month m_8,
-struct month m_9,struct month m_10,struct month m_11,struct month m_12)
+struct month m_9,struct month m_10,struct month m_11,struct month m_12,char **commandList, char *userInput, int mid, int day)
 {
     textWrapper("CalenderSystem");
+    memcpy(userInput, NULL, 0);
 
-    char userInput[30];
-    char **commandList = (char**)malloc(100*sizeof(double));
-
-    int mid;
-    int day;
-
-    commandList[0] = "setCurrent";
-    commandList[1] = "showCommand";
-    commandList[2] = "addEvent";
-
-    char **cLptr = commandList;
-
-    printf("showCommand for guide\n");
-    printf("\e[0;34m<-=\e[1;33m(o)\e[0;34m=->\e[0m ");
-    usrIn(userInput, sizeof(userInput));
+    printf("showCommand for guide");
+    newline();
+    usrIn(userInput, 30);
 
     if (!strcmp(userInput, commandList[1])) 
     {
+        char **cLptr = commandList;
         while (*cLptr)
         {
             printf("[%s] \n", *cLptr);
             cLptr++;
         }
-        cLptr = commandList;
     }
+
     if (!strcmp(userInput, commandList[0])) 
     {
         while (1) 
@@ -320,10 +314,12 @@ struct month m_9,struct month m_10,struct month m_11,struct month m_12)
 
             printf("Set Current Day: ");
             scanf("%2d", &day);
+
             if (mid > 12 || day > 31) 
             {
                 clearit();
-                printf("please input the right format (id/day)\n");
+                printf("please input the right format (id/day)");
+                newline();
             }
             else
             {
@@ -335,22 +331,25 @@ struct month m_9,struct month m_10,struct month m_11,struct month m_12)
         m_9, m_10, m_11, m_12, 
         mid, day);
     }
+    if (!strcmp(userInput, commandList[2])) 
+    {
+        clearit();
+        checkMD(m_1, m_2, m_3, m_4, 
+        m_5, m_6, m_7, m_8,
+        m_9, m_10, m_11, m_12, 
+        mid, day);
+    }
+    if (!strcmp(userInput, commandList[4])) 
+    {
+        clearit();
+        CalenderSystem9(m_1, m_2, m_3, m_4, m_5, m_6, m_7, m_8, 
+        m_9, m_10, m_11, m_12, commandList, userInput, mid, day);    
+    }
 
     textWrapper("");
-
-    newline();
-    mid = 0;
-    day = 0;
-    printf("Press Any Key To Continue...");
-    system("sleep 3");
-    fgets(userInput, sizeof(userInput), stdin);
-    strcpy(userInput, "");
-
-    newline();
-
-    // main(argc, argv);
-    clearit();
-    CalenderSystem9(m_1, m_2, m_3, m_4, m_5, m_6, m_7, m_8, m_9, m_10, m_11, m_12);
+    
+    return CalenderSystem9(m_1, m_2, m_3, m_4, m_5, m_6, m_7, m_8, 
+    m_9, m_10, m_11, m_12, commandList, userInput, mid, day);
 }
 int main(int argc, char **argv)
 {
@@ -489,6 +488,21 @@ int main(int argc, char **argv)
 
     printf("Year %d\n", y_1.num);
 
-    CalenderSystem9(m_1, m_2, m_3, m_4, m_5, m_6, m_7, m_8, m_9, m_10, m_11, m_12);
+    char **commandList = (char**)malloc(100*sizeof(double));
+    commandList[0] = "setCurrent";
+    commandList[1] = "showCommand";
+    commandList[2] = "showCurrent";
+    commandList[3] = "addEvent";
+    commandList[4] = "Clear";
+    char *userInput = (char*)malloc(30);
+    int mid;
+    int day;
+
+    mid = 1;
+    day = 20;
+    
+    clearit();
+    CalenderSystem9(m_1, m_2, m_3, m_4, m_5, m_6, m_7, m_8, 
+        m_9, m_10, m_11, m_12, commandList, userInput, mid, day);
     return (0);
 }
